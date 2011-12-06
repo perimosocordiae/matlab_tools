@@ -56,15 +56,9 @@
           ctx.moveTo(pt1.x, pt1.y)
           ctx.lineTo(pt2.x, pt2.y)
           ctx.stroke()
+          //TODO: add arrows, edge weight labels
         })
-/* simple rectangles
-        particleSystem.eachNode(function(node, pt){
-          var w = 10
-          ctx.fillStyle = (node.data.alone) ? "orange" : "black"
-          ctx.fillRect(pt.x-w/2, pt.y-w/2, w,w)
-        })
-*/
-		particleSystem.eachNode(function(node, pt){
+	particleSystem.eachNode(function(node, pt){
           // node: {mass:#, p:{x,y}, name:"", data:{}}
           // pt:   {x:#, y:#}  node position in screen coords
 

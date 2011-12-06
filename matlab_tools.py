@@ -8,7 +8,7 @@ def parse_args():
   p.add_argument('--grep', nargs='+', default=[], help='search for a (regex) pattern in all project files')
   p.add_argument('--defn', nargs='+', default=[], help='search for definitons in all project files')
   p.add_argument('--usage', nargs='+', default=[],help='search for usages in all project files')
-  p.add_argument('--graph', default=None, help='generate a project dependency graph')
+  p.add_argument('--graph', nargs='+', default=[], help='generate a project dependency graph')
   p.add_argument('--pyplot', action='store_true', help='use pyplot for the project dependency graph')
   args = p.parse_args()
   if not (args.grep or args.defn or args.usage or args.graph):
@@ -136,7 +136,7 @@ if __name__ == '__main__':
   search_patterns(files,args)
   if args.graph:
     import numpy,networkx as nx
-    defn_files = files if args.graph == '-' else find_files(args.graph)
+    defn_files = files if args.graph == '-' else dict((os.path.basename(f).lower(),f) for f in args.graph)
     graphs = dependency_graph(defn_files,files)
     if args.pyplot:
       from matplotlib import pyplot
