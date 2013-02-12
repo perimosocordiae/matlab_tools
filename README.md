@@ -14,15 +14,23 @@ A standalone utility for exploring a Matlab source directory.
 ## Usage ##
 
 ### Searching
- * `./matlab_tools.py DIR --grep foo` searches for foo in files under DIR
- * `./matlab_tools.py DIR --usage foo` searches for usages of the function foo in files under DIR
- * `./matlab_tools.py DIR --defn foo` searches for definitions of the function foo in files under DIR
+
+For a regex search term `foo`, i.e. `\beigs?\b`:
+
+ * Search for `foo` in files under `DIR`
+    ./matlab_tools.py DIR --grep foo
+ * Search for usages of the function `foo` in files under `DIR`
+    ./matlab_tools.py DIR --usage foo
+ * Search for definitions of the function `foo` in files under `DIR`
+    ./matlab_tools.py DIR --defn foo
 
 ### Visualizing
 
 *These options require the optional dependencies listed above.*
 
- * `./matlab_tools.py DIR --graph` displays a dependency graph for files under DIR
- * `./matlab_tools.py DIR --graph subdir` roots the dependency graph at files under subdir
- * `./matlab_tools.py DIR --pyplot --graph` displays the dependency graph using pyplot
-   * the default viewer opens up a browser window
+ * Display a dependency graph for files under `DIR` in the default browser
+    ./matlab_tools.py DIR --graph
+ * Root the dependency graph at files under `subdir`
+    ./matlab_tools.py DIR --graph subdir
+ * Display the dependency graph using a native pyplot window
+    ./matlab_tools.py DIR --pyplot --graph
