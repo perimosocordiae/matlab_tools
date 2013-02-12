@@ -1,7 +1,7 @@
-import tempfile
-import subprocess
 import json
 import os
+import tempfile
+import webbrowser
 
 
 def arbor(title,json_graph):
@@ -15,4 +15,5 @@ def arbor(title,json_graph):
     print >>fh, '<script src="%s"></script>'%os.path.join(pwd,'show_graph.js')
     print >>fh, '<style>body {background-color: #EEE;}</style>'
     print >>fh, '</head><body><h1>%s</h1><canvas id=viewport width=600 height=600></body>' % title
-  subprocess.check_call('open '+fname,shell=True)
+
+  webbrowser.open('file://'+fname)
