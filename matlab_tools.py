@@ -79,12 +79,18 @@ def dependency_graph(defn_files,usage_files):
   # usages is an adjacency matrix
   graph = nx.from_numpy_matrix(usages,create_using=nx.DiGraph())
   graph = nx.relabel_nodes(graph,dict(enumerate(usage_files.iterkeys())))
+  disconnected_files = []
   for nodes in nx.connected_components(nx.Graph(graph)):
     if len(nodes) == 1:
       if len(defn_files) == len(usage_files):  # only in full case
-        print nodes[0]
+        disconnected_files.append(nodes[0])
       continue
     yield graph.subgraph(nodes)
+  if disconnected_files:
+    print 'disconnected files: (may be dead code)'
+    for f in disconnected_files:
+      print ' ', f
+
 
 def show_graphs_pyplot(graph_iter):
   for comp in graph_iter:
